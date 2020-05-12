@@ -15,6 +15,9 @@ All of these are included in the repository and need to be added to the .gitigno
 1. Clone this repository and `cd` into the root directory
 2. Ensure the aforemenetioned environment variables match your local configuration
 3. Run `source export.sh`*
+
+*NOTE: Windows users may not be able to use the Make utils, if that is the case you can just run the commands found inside of the [utils directory](./prisma/utils) and replace the environment values with hard coded values.
+
 4. Run `make clean` and follow the prompt to drop the existing schema and write a new one
 5. Run `yarn` to install dependencies
 6. Run `yarn introspect` to introspect your schema
@@ -81,12 +84,6 @@ model User {
   todos     Todo[]
 }
 ```
-
-
-
-
-
-*NOTE: Windows users may not be able to use the Make utils, if that is the case you can just run the commands found inside of the [utils directory](./prisma/utils) and replace the environment values with hard coded values.
 
 7. Run `yarn generate` to generate the client smart module
 8. Run `yarn start:dev` to fire up the server
