@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "postinstall": "npx prisma generate",
+    "introspect": "npx prisma introspect",
+    "generate": "npx prisma generate",
+    "generate:prisma": "yarn introspect && yarn generate",
     "start:dev": "nodemon src/server"
   },
   "devDependencies": {
