@@ -18,7 +18,7 @@ All of these are included in the repository and need to be added to the .gitigno
 
 *NOTE: Windows users may not be able to use the Make utils, if that is the case you can just run the commands found inside of the [utils directory](./prisma/utils) and replace the environment values with hard coded values.
 
-4. Run `make clean` and follow the prompt to drop the existing schema and write a new one
+4. Run `make clean` and follow the prompt to drop the existing schema and write a new one. By default, your postgres password is `postgres`
 5. Run `yarn` to install dependencies
 6. Run `yarn introspect` to introspect your schema
 
