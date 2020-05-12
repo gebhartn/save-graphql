@@ -1,5 +1,5 @@
-const todos = ({ id }, _args, { prisma }) =>
-  prisma.user.findOne({ where: { id } }).todos()
+const todos = async (parent, _args, { prisma }) =>
+  await prisma.user.findOne({ where: { id: parent.id } }).todos()
 
 module.exports = {
   todos,

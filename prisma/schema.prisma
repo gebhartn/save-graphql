@@ -9,11 +9,11 @@ datasource db {
 
 model Todo {
   authorId  Int
-  content   String
+  content   String?
   createdAt DateTime @default(now())
   id        Int      @default(autoincrement()) @id
   title     String
-  author    User     @relation(fields: [authorId], references: [id])
+  author      User     @relation(fields: [authorId], references: [id])
 }
 
 model User {
@@ -21,5 +21,5 @@ model User {
   email     String   @unique
   id        Int      @default(autoincrement()) @id
   password  String
-  todos     Todo[]
+  todos      Todo[]
 }
