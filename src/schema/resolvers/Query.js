@@ -1,12 +1,7 @@
-const info = () => `Hello, world!`
+export const info = () => `Hello, world!`
 
-const allUsers = async (_parent, _args, { prisma }) => {
+export const allUsers = async (_parent, _args, { prisma }) => {
   const everyone = await prisma.user.findMany()
 
   return everyone
-}
-
-module.exports = {
-  info,
-  allUsers,
 }

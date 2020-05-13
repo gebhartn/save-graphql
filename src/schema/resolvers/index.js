@@ -1,13 +1,11 @@
-const Query = require('./Query')
-const Mutation = require('./Mutation')
-const User = require('./User')
-const Todo = require('./Todo')
+import * as Query from './Query'
+import * as Mutation from './Mutation'
+import * as User from './User'
+import * as Todo from './Todo'
 
-const resolvers = {
+export const resolvers = {
   Query,
   Mutation,
   User,
   Todo,
 }
-
-module.exports = { resolvers }

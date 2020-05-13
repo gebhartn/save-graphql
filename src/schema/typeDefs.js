@@ -1,4 +1,4 @@
-const typeDefs = `
+export const typeDefs = `
   type User {
     id: ID!
     email: String!
@@ -14,12 +14,10 @@ const typeDefs = `
     register(email: String!, password: String!): User!
   }
 
-	type Todo {
-		id: ID!
-		content: String!
-		title: String!
-		author: User!
-	}
+  type Todo {
+    id: ID!
+    content: String!
+    title: String!
+    author: User!
+  }
 `
-
-module.exports = { typeDefs }
