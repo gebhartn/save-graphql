@@ -1,6 +1,6 @@
-const { ApolloServer } = require('apollo-server')
-const { schema } = require('./schema')
-const { context } = require('./context')
+import { ApolloServer } from 'apollo-server'
+import { schema } from './schema'
+import { context } from './context'
 
 const port = process.env.PORT || 4000
 
