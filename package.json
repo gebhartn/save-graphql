@@ -7,13 +7,19 @@
     "introspect": "npx prisma introspect",
     "generate": "npx prisma generate",
     "generate:prisma": "yarn introspect && yarn generate",
-    "start:dev": "nodemon src/server"
+    "start:dev": "nodemon --exec babel-node src/server"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.9.6",
     "@prisma/cli": "^2.0.0-beta.5",
+    "babel-eslint": "^10.1.0",
     "nodemon": "^2.0.3"
   },
   "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/runtime": "^7.9.6",
     "@prisma/client": "^2.0.0-beta.5",
     "apollo-server": "^2.13.1",
     "graphql": "^15.0.0",
