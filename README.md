@@ -134,6 +134,8 @@ Where `HOST`, `DATABASE`, `USER` and `SCHEMA` are placeholders for your own cred
 
 ### Code
 
+#### Initialization
+
 Once we have introspected our datamodel and generated our Prisma client, we pass the client through the Apollo Server instance on context. This allows all of our resolvers to access the prisma client and use the CRUD operations against our own persistence layer.
 
 Additionally, inside of the [schema](./src/schema) directory, there is a `typeDefs.js` file that describes our GraphQL schema. These are the types returned by our resolvers and act as the first line of defense against potentially returning sensitive information (such as passwords) from our database.
