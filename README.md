@@ -4,11 +4,11 @@ With the advent of Prisma 2 it's no longer required to host a container for the 
 
 In order to use Prisma 2, the only prerequisite is a database connection URL which can be hosted locally or deployed to a hosting service. This example is using PostgreSQL but can be configured just as easily to work with SQLite 3 in a development environment.
 
-This new approach to interfacing with your persistence layer simplified the start-up time for new teams looking to tackle GraphQL and supports [SDL first][1] (which is the example here) and [code first][2] approaches depending on the desires of your team.
+This new approach to interfacing with your persistence layer simplified the start-up time for new teams looking to tackle GraphQL and supports SDL first (which is the example here) and [code first][2] approaches depending on the desires of your team.
 
-#### Getting Started
+### Getting Started
 
-This repository assumes that you have an active database connection to a postgresql database and also has some opinions about the username, password, and database name that the connection uses. All of these values are configured inside of *two* environment variables. One, located in the [prisma](/prisma) directory, has your connection info. [Another](.env) has environment variables for the cleanup script.
+This repository assumes that you have an active database connection to a postgresql database and also has some opinions about the username, password, and database name that the connection uses. All of these values are configured inside of *two* environment variables. One, located in the [prisma](/prisma/.env) directory, has your connection info. [Another](.env) has environment variables for the cleanup script.
 
 All of these are included in the repository and need to be added to the .gitignore if you want to use this as a starting point, but let's get started.
 
@@ -16,7 +16,7 @@ All of these are included in the repository and need to be added to the .gitigno
 2. Ensure the aforemenetioned environment variables match your local configuration
 3. Run `source export.sh`*
 
-*NOTE: Windows users may not be able to use the Make utils, if that is the case you can just run the commands found inside of the [utils directory](./prisma/utils) and replace the environment values with hard coded values.
+*NOTE: Windows users may not be able to use the Make utils, if that is the case you can just run the commands found inside of the [utils directory](./prisma/utils/clean.sh) and replace the environment values with hard coded values.
 
 4. Run `make clean` and follow the prompt to drop the existing schema and write a new one
 5. Run `yarn` to install dependencies
@@ -57,7 +57,7 @@ model User {
 
 Notice that we have two relational fields that have generated names which don't really describe the fields they are returning. Let's instead, change it to this:
 
-```
+```diff
 generator client {
   provider = "prisma-client-js"
 }
@@ -73,7 +73,8 @@ model Todo {
   createdAt DateTime @default(now())
   id        Int      @default(autoincrement()) @id
   title     String
-  author    User     @relation(fields: [authorId], references: [id])
+-  User      User     @relation(fields: [authorId], references: [id])
++  author    User     @relation(fields: [authorId], references: [id])
 }
 
 model User {
@@ -81,7 +82,8 @@ model User {
   email     String   @unique
   id        Int      @default(autoincrement()) @id
   password  String
-  todos     Todo[]
+-  Todo      Todo[]
++  todos     Todo[]
 }
 ```
 
@@ -111,3 +113,5 @@ query info {
   info
 }
 ```
+
+[2]: https://www.prisma.io/blog/the-problems-of-schema-first-graphql-development-x1mn4cb0tyl3
