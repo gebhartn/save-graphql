@@ -114,4 +114,40 @@ query info {
 }
 ```
 
+### What's happening
+
+#### Schema
+
+Inside of the [prisma](./prisma) directory you'll find a utils file with a [schema.sql](/prisma/utils/schema.sql) file inside of it. This is what defines the schema for our database.
+
+#### utils
+
+Additionally you will find some utils to drop and create the schema for your database. These are simply tools to help get started, and can be done manually from the command line.
+
+To run the commands manually:
+
+```bash
+psql -h HOST -d DATABASE -U USER -f SCHEMA.sql
+```
+
+Where `HOST`, `DATABASE`, `USER` and `SCHEMA` are placeholders for your own credentials and file name.
+
+### Code
+
+Once we have introspected our datamodel and generated our Prisma client, we pass the client through the Apollo Server instance on context. This allows all of our resolvers to access the prisma client and use the CRUD operations against our own persistence layer.
+
+Additionally, inside of the [schema](./src/schema) directory, there is a `typeDefs.js` file that describes our GraphQL schema. These are the types returned by our resolvers and act as the first line of defense against potentially returning sensitive information (such as passwords) from our database.
+
+There are some gotchas here. As your datamodel grows in complexity, it becomes increasingly prone to error as you are developing your application. Tools like the [GraphQL code generator](https://graphql-code-generator.com/) aim to alleviate this room for error, and should be considered as your app grows in complexity.
+
+#### Resolvers
+
+Resolvers, simply put, are functions which describe which information is returned for a compound field, mutation, query, or subscription. Resolvers are not required for fields which return scalar values, but beyond that there is a one-to-one relation for fields and the values returned for a given field.
+
+This concept mirrors the `include` directive commonly found in REST architecture. In order to resolve a compound field for a given type, you must first implement a resolver such that the resulting value of that function matches the expected type as described in the GraphQL schema.
+
+For example, if a given Query is described to return type `User`, then your resolver for the same Query must also return the same data type.
+
+Each resolvers receives four arguments: parent, arguments, context, and info. If you recall previously, you'll know that the `prisma client` is passed into all of your resolvers on the context object, and thus each of your resolvers can access the [CRUD operations](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/crud/) exposed by the prisma client.
+
 [2]: https://www.prisma.io/blog/the-problems-of-schema-first-graphql-development-x1mn4cb0tyl3
