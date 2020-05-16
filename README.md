@@ -140,8 +140,6 @@ Once we have introspected our datamodel and generated our Prisma client, we pass
 
 Additionally, inside of the [schema](./src/schema) directory, there is a `typeDefs.js` file that describes our GraphQL schema. These are the types returned by our resolvers and act as the first line of defense against potentially returning sensitive information (such as passwords) from our database.
 
-There are some gotchas here. As your datamodel grows in complexity, it becomes increasingly prone to error as you are developing your application. Tools like the [GraphQL code generator](https://graphql-code-generator.com/) aim to alleviate this room for error, and should be considered as your app grows in complexity.
-
 #### Resolvers
 
 Resolvers, simply put, are functions which describe which information is returned for a compound field, mutation, query, or subscription. Resolvers are not required for fields which return scalar values, but beyond that there is a one-to-one relation for fields and the values returned for a given field.
