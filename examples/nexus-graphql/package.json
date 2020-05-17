@@ -1,0 +1,37 @@
+{
+  "name": "nexus-graphql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && yarn generate && tsc",
+    "generate": "yarn generate:prisma && yarn generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/schema",
+    "postinstall": "yarn generate",
+    "start:dev": "ts-node-dev --no-notify --respawn --transpileOnly src/index"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.0.0-beta.5",
+    "@types/node": "^14.0.1",
+    "ts-node": "^8.10.1",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.9.2"
+  },
+  "dependencies": {
+    "@nexus/schema": "^0.13.1",
+    "@prisma/client": "^2.0.0-beta.5",
+    "@types/node-fetch": "^2.5.7",
+    "apollo-server": "^2.13.1",
+    "graphql": "^15.0.0",
+    "nexus-prisma": "^0.13.0"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "all",
+    "arrowParens": "avoid",
+    "singleQuote": true
+  }
+}
