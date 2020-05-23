@@ -6,13 +6,13 @@ In order to use Prisma 2, the only prerequisite is a database connection URL whi
 
 This new approach to interfacing with your persistence layer simplified the start-up time for new teams looking to tackle GraphQL and supports SDL first (which is the example here) and [code first][2] approaches depending on the desires of your team.
 
-### Getting Started
+### Getting Started: SDL-first
 
 This repository assumes that you have an active database connection to a postgresql database and also has some opinions about the username, password, and database name that the connection uses. All of these values are configured inside of *two* environment variables. One, located in the [prisma](/prisma/.env) directory, has your connection info. [Another](.env) has environment variables for the cleanup script.
 
 All of these are included in the repository and need to be added to the .gitignore if you want to use this as a starting point, but let's get started.
 
-1. Clone this repository and `cd` into the root directory
+1. Clone this repository and `cd` into the root directory of `examples/sdl-first`
 2. Ensure the aforemenetioned environment variables match your local configuration
 3. Run `source export.sh`*
 4. Run `make clean` and follow the prompt to drop the existing schema and write a new one. By default, your postgres password is `postgres`*
