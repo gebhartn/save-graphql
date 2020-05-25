@@ -6,6 +6,10 @@ In order to use Prisma 2, the only prerequisite is a database connection URL whi
 
 This new approach to interfacing with your persistence layer simplified the start-up time for new teams looking to tackle GraphQL and supports SDL first (which is the example here) and [code first][2] approaches depending on the desires of your team.
 
+## Todo:
+
+Nexus/Code First README
+
 ### Getting Started: SDL-first
 
 This repository assumes that you have an active database connection to a postgresql database and also has some opinions about the username, password, and database name that the connection uses. All of these values are configured inside of *two* environment variables. One, located in the [prisma](/prisma/.env) directory, has your connection info. [Another](.env) has environment variables for the cleanup script.
@@ -151,3 +155,5 @@ For example, if a given Query is described to return type `User`, then your reso
 Each resolvers receives four arguments: parent, arguments, context, and info. If you recall previously, you'll know that the `prisma client` is passed into all of your resolvers on the context object, and thus each of your resolvers can access the [CRUD operations](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/crud/) exposed by the prisma client.
 
 [2]: https://www.prisma.io/blog/the-problems-of-schema-first-graphql-development-x1mn4cb0tyl3
+
+
